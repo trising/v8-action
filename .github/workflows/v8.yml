@@ -74,14 +74,21 @@ jobs:
         zip -q -r v8.zip v8
         7z a v8.7z ./v8.zip -v2048m
         
-    - name: upload artifacts
+    - name: upload depot_tools
       uses: actions/upload-artifact@v4
       with:
-          name: v8-artifact.zip
-          path: |
-            depot_tools.zip
-            v8.7z.001
-            v8.7z.002
+          name: depot_tools
+          path: depot_tools.zip
+    - name: upload v8.7z.001
+      uses: actions/upload-artifact@v4
+      with:
+          name: v8.7z.001
+          path: v8.7z.001
+    - name: upload v8.7z.002
+      uses: actions/upload-artifact@v4
+      with:
+          name: v8.7z.002
+          path: v8.7z.002
     # upload depot_tools.zip to cowtransfer
     #- name: upload depot_tools
     #  if: env.DEPOT_UPLOAD == 'true' && !cancelled()
