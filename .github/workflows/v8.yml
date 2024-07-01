@@ -74,7 +74,6 @@ jobs:
     # 7zip v8 src
     - name: 7zip v8_src
       run: |
-        cd %HOMEPATH%
         zip -q -r v8.zip v8
         7z a v8.7z ./v8.zip -v2048m
         
