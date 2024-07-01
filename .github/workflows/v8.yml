@@ -23,7 +23,7 @@ env:
 jobs:
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: github.event.repository.owner.id == github.event.sender.id 	
     
     steps:
@@ -31,16 +31,16 @@ jobs:
       uses: actions/checkout@master
       
     # init ubuntu1804 environment
-    - name: init env
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install pkg-config git subversion curl wget build-essential python-is-python3 xz-utils zip p7zip-full
+    #- name: init env
+    #  run: |
+    #    sudo apt-get update
+    #    sudo apt-get -y install pkg-config git subversion curl wget build-essential python-is-python3 xz-utils zip p7zip-full
     
     # get depot_tools
-    - name: depot_tools
-      run: |
-        git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
-        echo export PATH=\"\$PATH:`pwd`/depot_tools/\" >> ~/.bash_profile
+    #- name: depot_tools
+    #  run: |
+    #    git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+    #    echo export PATH=\"\$PATH:`pwd`/depot_tools/\" >> ~/.bash_profile
     
     # fetch v8 source code
     - name: fetch v8
@@ -51,29 +51,32 @@ jobs:
         cd v8
     
     # patch source code
-    - name: patch v8
-      if: env.PATCH_FLAG == 'true' && !cancelled()
-      run: |
-        cd v8
-        git reset --hard $COMMIT
-        cd ..
+    # - name: patch v8
+    #  if: env.PATCH_FLAG == 'true' && !cancelled()
+    #  run: |
+    #   cd v8
+    #   git reset --hard $COMMIT
+    #   cd ..
         
-    - name: build v8
+    #- name: build v8
+    # run: |
+    #   source ~/.bash_profile
+    #   gclient sync -f
+    - name: Run build script
+      shell: cmd
       run: |
-        source ~/.bash_profile
-        gclient sync -f
-    
+        call .\builders\v8-windows.cmd $COMMIT
     # compress this file
-    - name: zip depot_tools
-      if: env.DEPOT_UPLOAD == 'true' && !cancelled()
-      run: |
-        zip -q -r depot_tools.zip depot_tools
+    #- name: zip depot_tools
+    # if: env.DEPOT_UPLOAD == 'true' && !cancelled()
+    # run: |
+    #   zip -q -r depot_tools.zip depot_tools
         
     # 7zip v8 src
     - name: 7zip v8_src
       run: |
-        zip -q -r v8.zip v8
-        7z a v8.7z ./v8.zip -v2048m
+        #zip -q -r v8.zip v8
+        7z a v8.7z ./v8 -v2048m
 
     - name: upload depot_tools
       uses: actions/upload-artifact@v4
