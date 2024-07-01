@@ -72,11 +72,13 @@ jobs:
       run: |
         call .\builders\v8-windows.cmd $COMMIT   
     # 7zip v8 src
-    - name: 7zip v8_src
-      run: |
-        zip -q -r v8.zip v8
-        7z a v8.7z ./v8.zip -v2048m
-        
+    - name: zip v8_src
+      shell: powershell
+      run: Compress-Archive -Path .\v8\* -Destination v8.zip
+    - name: 7zip
+      shell: cmd
+      run: 7z a v8.7z .\v8.zip -v2048m
+
     #- name: upload depot_tools
     #  uses: actions/upload-artifact@v4
     #  with:
