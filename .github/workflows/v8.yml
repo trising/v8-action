@@ -83,7 +83,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: depot_tools
-          path: depot_tools.zip
+          path: depot_tools.7z
     - name: upload v8.7z.001
       uses: actions/upload-artifact@v4
       with:
