@@ -43,12 +43,12 @@ jobs:
     #    echo export PATH=\"\$PATH:`pwd`/depot_tools/\" >> ~/.bash_profile
     
     # fetch v8 source code
-    - name: fetch v8
-      run: |
-        source ~/.bash_profile
-        fetch v8
-        echo "target_os = ['win']" >> .gclient
-        cd v8
+    #- name: fetch v8
+    # run: |
+    #   source ~/.bash_profile
+    #   fetch v8
+    #   echo "target_os = ['win']" >> .gclient
+    #   cd v8
     
     # patch source code
     # - name: patch v8
