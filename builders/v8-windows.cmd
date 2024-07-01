@@ -6,7 +6,6 @@ git config --global core.autocrlf false
 git config --global core.filemode false
 git config --global color.ui true
 
-cd %HOMEPATH%
 echo =====[ Getting Depot Tools ]=====
 powershell -command "Invoke-WebRequest https://storage.googleapis.com/chrome-infra/depot_tools.zip -O depot_tools.zip"
 7z x depot_tools.zip -o*
