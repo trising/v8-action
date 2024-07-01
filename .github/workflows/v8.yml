@@ -35,7 +35,6 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get -y install pkg-config git subversion curl wget build-essential python-is-python3 xz-utils zip p7zip-full
-        sudo ln -s /usr/bin/python3 /usr/bin/python
     
     # get depot_tools
     - name: depot_tools
