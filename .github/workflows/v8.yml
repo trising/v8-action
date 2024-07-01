@@ -70,30 +70,41 @@ jobs:
     - name: Run build script
       shell: cmd
       run: |
-        call .\builders\v8-windows.cmd $COMMIT   
+        call .\builders\v8-windows.cmd $COMMIT
+    - uses: actions/upload-artifact@v4
+      with:
+        name: windows
+        path: |
+          v8/v8/out.gn/x64.release/*.dll
+          v8/v8/out.gn/x64.release/*.pdb
+          v8/v8/out.gn/x64.release/*.lib
+          v8/v8/out.gn/x64.release/*.exp
+          v8/v8/out.gn/x64.release/*.ilk
+          v8/v8/out.gn/x64.release/*.exe
+          v8/v8/out.gn/x64.release/*.dat
     # 7zip v8 src
-    - name: zip v8_src
-      shell: powershell
-      run: Compress-Archive -Path .\v8\* -Destination v8.zip
-    - name: 7zip
-      shell: cmd
-      run: 7z a v8.7z .\v8.zip -v2048m
+    #- name: zip v8_src
+    #  shell: powershell
+    #  run: Compress-Archive -Path .\v8\* -Destination v8.zip
+    #- name: 7zip
+    #  shell: cmd
+    #  run: 7z a v8.7z .\v8.zip -v2048m
 
     #- name: upload depot_tools
     #  uses: actions/upload-artifact@v4
     #  with:
     #      name: depot_tools
     #      path: depot_tools.zip
-    - name: upload v8.7z.001
-      uses: actions/upload-artifact@v4
-      with:
-          name: v8.7z.001
-          path: v8.7z.001
-    - name: upload v8.7z.002
-      uses: actions/upload-artifact@v4
-      with:
-          name: v8.7z.002
-          path: v8.7z.002
+    #- name: upload v8.7z.001
+    #  uses: actions/upload-artifact@v4
+    #  with:
+    #      name: v8.7z.001
+    #      path: v8.7z.001
+    #- name: upload v8.7z.002
+    #  uses: actions/upload-artifact@v4
+    #  with:
+    #      name: v8.7z.002
+    #      path: v8.7z.002
     # upload depot_tools.zip to cowtransfer
     #- name: upload depot_tools
     #  if: env.DEPOT_UPLOAD == 'true' && !cancelled()
