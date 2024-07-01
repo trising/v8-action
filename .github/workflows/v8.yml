@@ -77,7 +77,7 @@ jobs:
     - name: upload artifacts
       uses: actions/upload-artifact@v4
       with:
-          name: v8-artifact
+          name: v8-artifact.zip
           path: |
             depot_tools.zip
             v8.7z.001
