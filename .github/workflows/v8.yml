@@ -13,7 +13,7 @@ on:
   #   types: started
 
 env:
-  PATCH_FLAG: false
+  PATCH_FLAG: true
   COMMIT: 0
   DEPOT_UPLOAD: false
   SRC_UPLOAD: true
