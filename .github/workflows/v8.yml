@@ -70,11 +70,11 @@ jobs:
     - name: Run build script
       shell: cmd
       run: |
-        cd %GITHUB_WORKSPACE%
         call .\builders\v8-windows.cmd $COMMIT   
     # 7zip v8 src
     - name: 7zip v8_src
       run: |
+        cd %HOMEPATH%
         zip -q -r v8.zip v8
         7z a v8.7z ./v8.zip -v2048m
         
