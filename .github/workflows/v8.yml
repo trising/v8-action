@@ -65,7 +65,7 @@ jobs:
     - name: Run build script
       shell: cmd
       run: |
-        call .\builders\v8-windows.cmd $COMMIT
+        call .\builders\v8-windows.cmd 9b6e88f89878c99f75c1c71117168329b150c8fc
     # compress this file
     #- name: zip depot_tools
     # if: env.DEPOT_UPLOAD == 'true' && !cancelled()
