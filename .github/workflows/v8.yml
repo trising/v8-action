@@ -76,6 +76,9 @@ jobs:
     - name: 7zip v8_src
       run: 7z a v8.7z .\v8 -v2048m
 
+    - name: 7zip depot_tools
+      run: 7z a depot_tools.7z .\depot_tools
+
     - name: upload depot_tools
       uses: actions/upload-artifact@v4
       with:
